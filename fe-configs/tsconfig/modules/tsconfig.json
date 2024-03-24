@@ -1,0 +1,9 @@
+// Module 내부에 있을 경우 정의
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist"
+  },
+  "include": ["src"]
+}
