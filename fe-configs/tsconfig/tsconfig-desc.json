@@ -1,0 +1,80 @@
+// https://inpa.tistory.com/entry/TS-%F0%9F%93%98-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-tsconfigjson-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0-%EC%B4%9D%EC%A0%95%EB%A6%AC
+{
+  "compilerOptions": {
+    /**********/
+    /* Module */
+    /**********/
+    "baseUrl": ".",
+    "paths": {
+      // "@emotion.core": ["sink.d.ts"]
+    }, // baseUrl 기준 Import를 다시 Mapping
+    "module": "ES2022", // 사용할 모듈 시스템 지정 ('commonjs', 'amd', 'es2015', 'esnext', 'node16' 등), Node는 16부터 ESM을 지원한다.
+    "moduleDetection": "force", // 모듈 탐지 방식 설정 ('force' 사용)
+    "moduleResolution": "Node16", // 모듈 해석 방식 설정 (Node 권장)
+    "resolveJsonModule": false, // JSON 모듈 해석 지원 여부 (ESM은 아직 JSON 모듈을 지원하지 않음)
+    //"rootDirs": [], // 여러 Dir을 하나의 RootDir처럼 사용할 수 있다.
+
+    /****************************/
+    /* Language and Environment */
+    /****************************/
+    // JSX를 typescript가 처리할지에 대해 설정
+    // 'preserve': jsx 유지한다. Bable이 처리하게 된다
+    // 'react-native':확장자만 jsx -> js로
+    // 'react-jsx': React17이상에서 도입된 새로운 가져오기 기능 사용)
+    // 'react': jsx 구문을 React.createElement로 대체한다
+    "jsx": "react-jsx",
+    "experimentalDecorators": true, // Decorator를 사용할 수 있다 (실험적 기능)
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext",
+      "ESNext.AsyncIterable"
+    ], // 컴파일러에 포함할 라이브러리 목록
+    "target": "es6", // 컴파일할 ECMAScript 대상 버전 ('es3', 'es5', 'es2015' 등)
+
+    /*************/
+    /* TypeCheck */
+    /*************/
+    "alwaysStrict": true, // Compile된 JS파일에 use strict를 자동으로 추가한다
+    "strict": true, // 모든 엄격한 타입 체크 옵션 활성화 여부 (아래 대부분의 옵션이 기본적으로 활성화 된다)
+    "noFallthroughCasesInSwitch": true, // switch 문에서 break 누락 시 에러 발생 여부
+    "noImplicitAny": true, // any 타입 사용 금지 여부
+    "noImplicitOverride": true, // 상위 클래스에서 명시적으로 오버라이드하지 않는 메서드에 대해 에러 발생 여부
+    "noImplicitReturns": true, // 함수에서 모든 경로에 return이 없을 경우 에러 발생 여부
+    "noImplicitThis": true, // this가 any 타입일 경우 에러 발생 여부
+    "noUnusedLocals": true, // 사용되지 않는 지역 변수가 있을 경우 에러 발생 여부
+    "noUnusedParameters": true, // 사용되지 않는 매개변수가 있을 경우 에러 발생 여부
+    "strictFunctionTypes": true, // 함수 파라미터의 엄격한 타입 체크 여부
+    "strictNullChecks": true, // null 및 undefined에 대한 엄격한 체크 여부
+    "strictPropertyInitialization": true, // 클래스 속성 초기화에 대한 엄격한 체크 여부
+    "noPropertyAccessFromIndexSignature": true, // 인덱스 서명을 통한 속성 접근 시 에러 발생 여부
+    "noUncheckedIndexedAccess": true, // index로 접근할 경우 undefined를 고려하게 된다. (ex: true :: arr[1] => string | undefined)
+
+    /***********************/
+    /* Interop Constraints */
+    /***********************/
+    "allowSyntheticDefaultImports": true, // default export가 없는 모듈을 가져올 때도, import를 표현한다 (실제 Compile에는 영향을 주지 않는다)
+    "esModuleInterop": true, // CommonJS의 require 대신 ECM의 import를 사용할 수 있다(Compile에 영향준다, 내부적으로 allowSyntheticDefaultImports 옵션을 포함한다)
+    "forceConsistentCasingInFileNames": true, // 파일명의 대소문자 일관성 강제 여부
+
+    /********/
+    /* Emit */
+    /********/
+    "declaration": true, // 컴파일 시 .d.ts (타입 정의) 파일 자동 생성 여부
+    //"downlevelIteration": true, // ES5 이하에서 for..of, Spread 등을 정확하게 동작하게 만들어 준다. 추가적인 코드가 들어가서 필요없을 땐 지우는게 좋다.
+    "inlineSources": true,
+    "noEmitOnError": true, // 에러가 있을 경우 출력 파일 생성하지 않음
+    "preserveConstEnums": true,
+    "removeComments": true, // 컴파일 시 주석 제거 여부
+    "sourceMap": true,
+
+    /*******/
+    /* ETC */
+    /*******/
+    //"checkJs": true, // 일반 JS 파일에서도 타입 체크 실행 여부
+    "allowJs": true, // js 파일들을 TypeScript에서 import해서 사용 가능 여부
+    "skipLibCheck": true, // 라이브러리 파일의 타입 체크 건너뛰기 여부
+    "stripInternal": true, // 내부적으로 표시된 요소를 최종 출력에서 제거 여부
+    "useDefineForClassFields": true // 클래스 필드 정의 방식 설정
+  }
+}

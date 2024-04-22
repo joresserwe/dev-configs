@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    /* Module */
+    "baseUrl": ".",
+    "paths": {},
+    "module": "Node16",
+    "moduleDetection": "force",
+    "moduleResolution": "Node16",
+    "resolveJsonModule": false,
+    "target": "es6",
+    "jsx": "react-jsx",
+    /* Language and Environment */
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    /* Interop Constraints */
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    /* ETC */
+    "allowJs": true,
+    "skipLibCheck": true,
+    "stripInternal": true,
+    "useDefineForClassFields": true,
+  },
+  "exclude": [
+    "dist",
+    "node_modules"
+  ],
+}

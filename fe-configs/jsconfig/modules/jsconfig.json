@@ -1,0 +1,9 @@
+// Module 내부에 있을 경우 정의
+{
+  "extends": "../jsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "outDir": "./dist"
+  },
+  "include": ["src"]
+}

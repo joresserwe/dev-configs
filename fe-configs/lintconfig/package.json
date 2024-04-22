@@ -1,0 +1,15 @@
+{
+  "name": "lintconfig",
+  "version": "1.0.0",
+  "description": "```bash npm install -D eslint\\                eslint-plugin-react\\                eslint-plugin-react-hooks\\                eslint-plugin-import\\                eslint-plugin-prettier\\                eslint-config-prettier\\                eslint-plugin-simple-import-sort\\                @typescript-eslint/parser\\ # ts에서만 사용                @typescript-eslint/eslint-plugin\\                # eslint-plugin-jsx-a11y                # @emotion/eslint-plugin ```",
+  "main": "null",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.34.1"
+  }
+}

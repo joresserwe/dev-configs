@@ -1,0 +1,59 @@
+{
+  "compilerOptions": {
+    
+    /* Module */
+    "baseUrl": ".",
+    "paths": {},
+    "module": "ES2022",
+    "moduleDetection": "force",
+    "moduleResolution": "Node16",
+    "resolveJsonModule": false,
+    
+    /* Language and Environment */
+    "jsx": "react-jsx",
+    "experimentalDecorators": true,
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext",
+      "ESNext.AsyncIterable"
+    ],
+    "target": "es6",
+    
+    /* TypeCheck */
+    "alwaysStrict": true,
+    "strict": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedIndexedAccess": true,
+    
+    /* Interop Constraints */
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    
+    /* Emit */
+    "declaration": true,
+    "inlineSources": true,
+    "noEmitOnError": true,
+    "preserveConstEnums": true,
+    "removeComments": true,
+    "sourceMap": true,
+    
+    /* ETC */
+    //"checkJs": true,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "stripInternal": true,
+    "useDefineForClassFields": true,
+  },
+}
