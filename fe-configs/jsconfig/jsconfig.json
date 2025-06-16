@@ -1,30 +1,120 @@
+// React JavaScript 프로젝트용 설정 파일 (jsconfig.json)
+// Vite + React JavaScript 최적화 설정
 {
   "compilerOptions": {
+    /**********/
     /* Module */
-    "baseUrl": ".",
-    "paths": {},
-    "module": "Node16",
-    "moduleDetection": "force",
-    "moduleResolution": "Node16",
-    "resolveJsonModule": false,
-    "target": "es6",
-    "jsx": "react-jsx",
+    /**********/
+    "baseUrl": ".", // 모듈 해석의 기준이 되는 디렉토리
+    "paths": {
+      // React 일반적인 path alias 설정
+      "@/*": [
+        "./src/*"
+      ],
+      "@/components/*": [
+        "./src/components/*"
+      ],
+      "@/pages/*": [
+        "./src/pages/*"
+      ],
+      "@/utils/*": [
+        "./src/utils/*"
+      ],
+      "@/hooks/*": [
+        "./src/hooks/*"
+      ],
+      "@/lib/*": [
+        "./src/lib/*"
+      ],
+      "@/styles/*": [
+        "./src/styles/*"
+      ],
+      "@/assets/*": [
+        "./src/assets/*"
+      ],
+      "@/store/*": [
+        "./src/store/*"
+      ],
+      "@/api/*": [
+        "./src/api/*"
+      ],
+      "@/contexts/*": [
+        "./src/contexts/*"
+      ]
+    },
+    "module": "ESNext", // 최신 ESM 사용
+    "moduleResolution": "Bundler", // Vite 번들러 최적화
+    "resolveJsonModule": true, // JSON 모듈 해석 지원
+    /****************************/
     /* Language and Environment */
-    "noFallthroughCasesInSwitch": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    /****************************/
+    "jsx": "react-jsx", // React 17+ 새로운 JSX Transform 사용
+    "jsxImportSource": "react", // JSX import 소스 명시
+    "lib": [
+      "DOM", // 브라우저 DOM API
+      "DOM.Iterable", // DOM 요소 iterable 지원
+      "WebWorker", // Web Worker API 지원
+      "ES2023" // 최신 ES API 지원
+    ],
+    "target": "ES2022", // 최신 브라우저 타겟
+    /***********************/
+    /* JavaScript 전용 체크 */
+    /***********************/
+    "allowJs": true, // JavaScript 파일 허용
+    "checkJs": true, // JavaScript 파일 타입 체크 (JSDoc 기반)
+    "maxNodeModuleJsDepth": 1, // node_modules JS 파일 체크 깊이
+    /***********************/
     /* Interop Constraints */
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    /* ETC */
-    "allowJs": true,
-    "skipLibCheck": true,
-    "stripInternal": true,
-    "useDefineForClassFields": true,
+    /***********************/
+    "allowSyntheticDefaultImports": true, // default import 문법 허용
+    "esModuleInterop": true, // CommonJS 모듈 ES6 import 허용
+    "forceConsistentCasingInFileNames": true, // 파일명 대소문자 일관성
+    "isolatedModules": true, // 독립적 모듈 처리
+    /*****************************/
+    /* Performance & Optimization */
+    /*****************************/
+    "skipLibCheck": true, // 라이브러리 타입 체크 건너뛰기
+    "incremental": true, // 증분 컴파일
+    /************************/
+    /* Additional Options */
+    /************************/
+    "noEmit": true, // JavaScript는 빌드 도구가 처리
+    "sourceMap": true, // 소스맵 생성
+    /********************/
+    /* JSDoc 지원 강화 */
+    /********************/
+    "declaration": false,
+    "declarationMap": false
   },
-  "exclude": [
-    "dist",
-    "node_modules"
+  // 컴파일에 포함할 파일
+  "include": [
+    "src/**/*", // src 디렉토리의 모든 파일
+    "src/**/*.json", // JSON 파일 포함
+    "vite-env.d.ts", // Vite 타입 정의 (있다면)
+    "**/*.js",
+    "**/*.jsx",
+    "**/*.json"
   ],
+  // 컴파일에서 제외할 파일
+  "exclude": [
+    "node_modules",
+    "dist", // Vite 빌드 출력 디렉토리
+    "build",
+    "coverage", // 테스트 커버리지
+    "**/*.test.*",
+    "**/*.spec.*",
+    "cypress", // E2E 테스트
+    "playwright-tests" // E2E 테스트
+  ],
+  // 타입 획득 설정
+  "typeAcquisition": {
+    "enable": true, // 자동 타입 다운로드
+    "include": [
+      "react",
+      "react-dom"
+    ],
+    "exclude": [
+      "jquery" // 불필요한 타입 제외
+    ]
+  }
 }
