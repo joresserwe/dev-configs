@@ -1,6 +1,4 @@
 import js from '@eslint/js';
-import typescript from '@typescript-eslint/eslint-plugin';
-import typescriptParser from '@typescript-eslint/parser';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import prettier from 'eslint-plugin-prettier';
@@ -13,13 +11,16 @@ import jsxA11y from 'eslint-plugin-jsx-a11y';
 import unusedImports from 'eslint-plugin-unused-imports';
 import importPlugin from 'eslint-plugin-import';
 import nextPlugin from '@next/eslint-plugin-next';
+import tseslint from 'typescript-eslint';
 
 export default [
   // =================================================================
   // 베이스 및 추천 설정 (Base & Recommended Configurations)
   // =================================================================
   js.configs.recommended,
-  unicorn.configs['flat/recommended'],
+  ...tseslint.configs.recommended,
+  ...tseslint.configs.recommendedTypeChecked,
+  unicorn.configs.recommended,
   sonarjs.configs.recommended,
   security.configs.recommended,
   jsxA11y.flatConfigs.recommended,
@@ -40,7 +41,6 @@ export default [
   {
     files: ['**/*.{js,jsx,ts,tsx}'],
     languageOptions: {
-      parser: typescriptParser,
       parserOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',
@@ -65,15 +65,10 @@ export default [
       },
     },
     plugins: {
-      '@typescript-eslint': typescript,
       react: react,
       'react-hooks': reactHooks,
       prettier: prettier,
       'simple-import-sort': simpleImportSort,
-      unicorn: unicorn,
-      sonarjs: sonarjs,
-      security: security,
-      'jsx-a11y': jsxA11y,
       'unused-imports': unusedImports,
       import: importPlugin,
       '@next/next': nextPlugin,
@@ -334,6 +329,8 @@ export default [
       'public/**',
       '*.min.js',
       '*.min.css',
+      '*.config.js',
+      '*.config.mjs',
       '.next/**',
       'out/**',
       'next-env.d.ts',
