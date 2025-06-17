@@ -1,6 +1,4 @@
 import js from '@eslint/js';
-import typescript from '@typescript-eslint/eslint-plugin';
-import typescriptParser from '@typescript-eslint/parser';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import prettier from 'eslint-plugin-prettier';
@@ -12,16 +10,16 @@ import security from 'eslint-plugin-security';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
 import unusedImports from 'eslint-plugin-unused-imports';
 import importPlugin from 'eslint-plugin-import';
-
-// ===== NEXT.JS 프로젝트 시 주석 해제 =====
-// import nextPlugin from '@next/eslint-plugin-next';
+import tseslint from 'typescript-eslint';
 
 export default [
   // =================================================================
   // 베이스 및 추천 설정 (Base & Recommended Configurations)
   // =================================================================
   js.configs.recommended,
-  unicorn.configs['flat/recommended'],
+  ...tseslint.configs.recommended,
+  ...tseslint.configs.recommendedTypeChecked,
+  unicorn.configs.recommended,
   sonarjs.configs.recommended,
   security.configs.recommended,
   jsxA11y.flatConfigs.recommended,
@@ -42,7 +40,6 @@ export default [
   {
     files: ['**/*.{js,jsx,ts,tsx}'],
     languageOptions: {
-      parser: typescriptParser,
       parserOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',
@@ -72,24 +69,13 @@ export default [
       'react-hooks': reactHooks,
       prettier: prettier,
       'simple-import-sort': simpleImportSort,
-      unicorn: unicorn,
-      sonarjs: sonarjs,
-      security: security,
-      'jsx-a11y': jsxA11y,
       'unused-imports': unusedImports,
       import: importPlugin,
-
-      // ===== NEXT.JS 프로젝트 시 주석 해제 =====
-      // '@next/next': nextPlugin,
     },
     settings: {
       react: {
         version: 'detect',
       },
-      // ===== NEXT.JS 프로젝트 시 주석 해제 =====
-      // next: {
-      //   rootDir: true,
-      // },
     },
     rules: {
       // ==================== PRETTIER 설정 (Code Formatting) ====================
@@ -197,10 +183,6 @@ export default [
       'react/jsx-no-target-blank': ['error', { enforceDynamicLinks: 'always' }],
       'react/hook-use-state': 'error',
 
-      // ===== REACT 프로젝트 시 주석 해제 (Next.js에서는 주석 처리) =====
-      // 'react/jsx-uses-react': 'error',
-      // 'react/jsx-uses-vars': 'error',
-
       // ==================== REACT HOOKS 안전한 사용 (Safe Hook Usage) ====================
       ...reactHooks.configs.recommended.rules,
       'react-hooks/exhaustive-deps': 'error',
@@ -228,23 +210,6 @@ export default [
             // Side effect imports
             ['^\\u0000'],
           ],
-
-          // ===== NEXT.JS 프로젝트 시 이 블록 사용 (React에서는 상단 블록 사용) =====
-          /*
-          groups: [
-            // Next.js, React, 3rd-party packages
-            ['^next', '^react', '^@?\\w'],
-            // Absolute imports (alias) for Next.js
-            ['^(@|@/|app|components|pages|hooks|utils|lib|types|styles|assets)(/.*|$)'],
-            // Relative imports
-            ['^\\.\\.(?!/?$)', '^\\.\\./?$'],
-            ['^\\./(?=.*/)(?!/?$)', '^\\.(?!/ ? $)', ' ^\\./? $'],
-        // Style imports
-        ['^.+\\.s?css$'],
-        // Side effect imports
-        ['^\\u0000'],
-      ],
-      */
         },
 ],
 'simple-import-sort/exports': 'error',

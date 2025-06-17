@@ -2,33 +2,40 @@
 
 ## 패키지 설치
 
-### React 프로젝트
+### React & Next.js 프로젝트
 
 ```bash
-npm install -D eslint\
-               @eslint/js\
-               @typescript-eslint/eslint-plugin\
-               @typescript-eslint/parser\
-               eslint-plugin-react\
-               eslint-plugin-react-hooks\
-               eslint-plugin-import\
-               eslint-plugin-prettier\
-               eslint-config-prettier\
-               eslint-plugin-simple-import-sort\
-               eslint-plugin-unicorn\
-               eslint-plugin-sonarjs\
-               eslint-plugin-security\
-               eslint-plugin-jsx-a11y\
-               eslint-plugin-unused-imports\
-               @next/eslint-plugin-next # Next.js
+npm install -D eslint \
+               @eslint/js \
+               typescript-eslint \
+               eslint-plugin-import \
+               eslint-plugin-prettier \
+               eslint-config-prettier \
+               eslint-plugin-simple-import-sort \
+               eslint-plugin-unicorn \
+               eslint-plugin-sonarjs \
+               eslint-plugin-security \
+               eslint-plugin-unused-imports \
+               eslint-plugin-promise \
+               eslint-plugin-regexp
+
+#### 2. React 프로젝트 (위 공통 패키지 설치 후 추가)
+npm install -D eslint-plugin-jsx-a11y \
+                 @tanstack/eslint-plugin-query \
+                 eslint-plugin-better-tailwindcss \
+                 eslint-plugin-react-refresh \
+                 eslint-plugin-react \
+                 eslint-plugin-react-hooks
+
+#### 3. Next.js 프로젝트 (위 React 프로젝트 패키지까지 모두 설치 후 추가)
+npm install -D @next/eslint-plugin-next
 ```
 
 ## 패키지 설명
 
 - `eslint`: ESLint 코어 라이브러리
 - `@eslint/js`: ESLint 9.x 공식 JavaScript 추천 설정
-- `@typescript-eslint/eslint-plugin`: TypeScript 지원을 위한 ESLint 플러그인
-- `@typescript-eslint/parser`: TypeScript 지원을 위한 ESLint 파서
+- `typescript-eslint`: TypeScript 코드를 위한 ESLint 플러그인 및 파서
 - `eslint-plugin-react`: React 관련 ESLint 규칙
 - `eslint-plugin-react-hooks`: React Hooks 관련 ESLint 규칙
 - `eslint-plugin-import`: import/export 문 관련 ESLint 규칙
@@ -40,8 +47,12 @@ npm install -D eslint\
 - `eslint-plugin-security`: 보안 취약점 탐지
 - `eslint-plugin-jsx-a11y`: JSX 접근성 관련 ESLint 규칙
 - `eslint-plugin-unused-imports`: 사용하지 않는 import 제거
-- `globals`: 전역 변수 정의 (Node.js, 브라우저 등)
 - `@next/eslint-plugin-next`: Next.js 최적화 및 Core Web Vitals 규칙
+- `@tanstack/eslint-plugin-query`: TanStack Query (React Query) 관련 ESLint 규칙
+- `eslint-plugin-better-tailwindcss`: Tailwind CSS 클래스 정렬 및 유효성 검사
+- `eslint-plugin-react-refresh`: React Fast Refresh 관련 ESLint 규칙
+- `eslint-plugin-promise`: Promise 사용 관련 ESLint 규칙
+- `eslint-plugin-regexp`: 정규식 사용 관련 ESLint 규칙
 
 ## 주요 기능
 
@@ -104,7 +115,7 @@ npm install -D eslint\
 
 ## 사용법
 
-- `[react|next]/eslint.config.js` 를 프로젝트 경로 Root에 넣으세요.
+- `[react|next|typescript]/eslint.config.js` 를 프로젝트 경로 Root에 넣으세요.
 - 관련 eslint 패키지들을 설치하세여.
 
 ### 검사
