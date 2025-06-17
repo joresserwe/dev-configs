@@ -1,145 +1,70 @@
-// React 프로젝트용 TypeScript 설정 파일
-// Vite + React 최적화 설정
+// Vite + React 프로젝트용 TypeScript 설정 파일
 {
   "compilerOptions": {
     /**********/
     /* Module */
     /**********/
-    "baseUrl": ".", // 모듈 해석의 기준이 되는 디렉토리
+    "baseUrl": ".",
     "paths": {
-      // React 일반적인 path alias 설정
-      "@/*": [
-        "./src/*"
-      ],
-      "@/components/*": [
-        "./src/components/*"
-      ],
-      "@/pages/*": [
-        "./src/pages/*"
-      ],
-      "@/utils/*": [
-        "./src/utils/*"
-      ],
-      "@/types/*": [
-        "./src/types/*"
-      ],
-      "@/hooks/*": [
-        "./src/hooks/*"
-      ],
-      "@/lib/*": [
-        "./src/lib/*"
-      ],
-      "@/styles/*": [
-        "./src/styles/*"
-      ],
-      "@/assets/*": [
-        "./src/assets/*"
-      ],
-      "@/store/*": [
-        "./src/store/*"
-      ],
-      "@/api/*": [
-        "./src/api/*"
-      ],
-      "@/contexts/*": [
-        "./src/contexts/*"
-      ]
+      "@/*": ["./src/*"] // Vite에서 이 alias를 사용하려면 vite.config.ts 설정이 필요합니다.
     },
-    "module": "ESNext", // 최신 ESM 사용
-    "moduleDetection": "force", // 모듈 탐지 방식 강제 설정
-    "moduleResolution": "Bundler", // Vite 번들러 최적화
-    "resolveJsonModule": true, // JSON 모듈 해석 지원
-    "allowImportingTsExtensions": false, // .ts 확장자 import 금지
+    "module": "ESNext",
+    "moduleDetection": "force",
+    "moduleResolution": "Bundler",
+    "resolveJsonModule": true,
+    "allowImportingTsExtensions": false,
+
     /****************************/
     /* Language and Environment */
     /****************************/
-    "jsx": "react-jsx", // React 17+ 새로운 JSX Transform 사용
-    "jsxImportSource": "react", // JSX import 소스 명시
-    "experimentalDecorators": true, // Decorator 사용 허용 (MobX, class-validator 등)
-    "emitDecoratorMetadata": true, // Decorator 메타데이터 생성
-    "lib": [
-      "DOM", // 브라우저 DOM API
-      "DOM.Iterable", // DOM 요소 iterable 지원
-      "WebWorker", // Web Worker API 지원
-      "ES2023" // 최신 ES API 지원
-    ],
-    "target": "ES2022", // 최신 브라우저 타겟
-    "useDefineForClassFields": true, // 표준 클래스 필드 동작
+    // "jsx": "preserve" -> "react-jsx"로 변경
+    "jsx": "react-jsx", // Vite(ESbuild)가 JSX를 처리하도록 최신 자동 런타임 사용
+    "experimentalDecorators": true, // (선택) Decorator 사용 시 유지
+    "emitDecoratorMetadata": true, // (선택) Decorator 사용 시 유지
+    "lib": ["DOM", "DOM.Iterable", "ES2023"],
+    "target": "ES2022",
+    "useDefineForClassFields": true,
+
     /*****************************/
     /* TypeCheck - 엄격한 타입 검사 */
     /*****************************/
-    "strict": true, // 모든 엄격한 타입 체크 옵션 활성화
-    "exactOptionalPropertyTypes": true, // 선택적 속성의 정확한 타입 검사
-    "noFallthroughCasesInSwitch": true, // switch 문 break 누락 에러
-    "noImplicitAny": true, // any 타입 암시적 사용 금지
-    "noImplicitOverride": true, // 오버라이드 명시적 표시 요구
-    "noImplicitReturns": true, // 모든 경로 return 요구
-    "noImplicitThis": true, // this 타입 명시 요구
-    "noUnusedLocals": true, // 사용되지 않는 지역 변수 에러
-    "noUnusedParameters": true, // 사용되지 않는 매개변수 에러
-    "strictBindCallApply": true, // bind/call/apply 엄격한 타입 검사
-    "strictFunctionTypes": true, // 함수 파라미터 엄격한 타입 체크
-    "strictNullChecks": true, // null/undefined 엄격한 체크
-    "strictPropertyInitialization": true, // 클래스 속성 초기화 체크
-    "noPropertyAccessFromIndexSignature": true, // 인덱스 서명 점 표기법 금지
-    "noUncheckedIndexedAccess": true, // 배열 인덱스 접근 시 undefined 고려
-    "allowUnreachableCode": false, // 도달 불가능한 코드 금지
-    "allowUnusedLabels": false, // 사용되지 않는 레이블 금지
+    "strict": true,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedIndexedAccess": true,
+
     /***********************/
     /* Interop Constraints */
     /***********************/
-    "allowSyntheticDefaultImports": true, // default import 문법 허용
-    "esModuleInterop": true, // CommonJS 모듈 ES6 import 허용
-    "forceConsistentCasingInFileNames": true, // 파일명 대소문자 일관성
-    "isolatedModules": true, // 독립적 모듈 처리 (Vite SWC/esbuild 호환성)
-    "verbatimModuleSyntax": false, // import/export 문법 보존
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true, // Vite는 파일을 개별적으로 변환하므로 필수
+    "verbatimModuleSyntax": true,
+
     /********/
     /* Emit */
     /********/
-    "noEmit": true, // Vite가 빌드 담당하므로 TypeScript는 타입 체크만
-    "incremental": true, // 증분 컴파일 (성능 향상)
-    "tsBuildInfoFile": "./node_modules/.cache/tsbuildinfo", // 캐시 최적화
+    "noEmit": true, // Vite가 빌드를 담당하므로 타입 체크만 수행
+    "incremental": true,
+
     /*****************************/
     /* Performance & Optimization */
     /*****************************/
-    "allowJs": true, // JavaScript 파일 import 허용
-    "checkJs": false, // JS 파일 타입 체크 비활성화 (성능상 이유)
-    "skipLibCheck": true, // 라이브러리 타입 체크 건너뛰기 (성능 향상)
-    "assumeChangesOnlyAffectDirectDependencies": true, // 성능 최적화
+    "allowJs": true,
+    "skipLibCheck": true,
+
     /************************/
-    /* Additional Options */
+    /* Additional Strictness */
     /************************/
-    "noErrorTruncation": true, // 전체 에러 메시지 표시
-    "preserveWatchOutput": true, // watch 모드 출력 보존
-    "declaration": false, // .d.ts 파일 생성 비활성화 (앱 프로젝트)
-    "declarationMap": false, // declaration map 비활성화
-    "sourceMap": true, // 소스맵 생성 (디버깅용)
-    "removeComments": false, // 주석 보존 (개발 편의성)
-    /********************/
-    /* Tree Shaking 최적화 */
-    /********************/
-    "importHelpers": true, // tslib 헬퍼 함수 재사용
-    "importsNotUsedAsValues": "remove" // 사용되지 않는 import 제거
+    "noErrorTruncation": true,
+    "preserveWatchOutput": true
   },
-  // 컴파일에 포함할 파일
-  "include": [
-    "src/**/*", // src 디렉토리의 모든 파일
-    "src/**/*.json", // JSON 파일 포함
-    "vite-env.d.ts", // Vite 환경 타입 정의
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  // 컴파일에서 제외할 파일
-  "exclude": [
-    "node_modules",
-    "dist", // Vite 빌드 출력 디렉토리
-    "build",
-    "coverage", // 테스트 커버리지
-    "**/*.test.*",
-    "**/*.spec.*",
-    "cypress", // E2E 테스트
-    "playwright-tests" // E2E 테스트
-  ],
-  // TypeScript References (모노레포용 - 선택사항)
-  "references": []
+  
+  // 컴파일에 포함할 파일 (Next.js 관련 타입 제거)
+  "include": ["src"], // 'src' 디렉토리 전체를 포함하는 것이 일반적
+
+  // 컴파일에서 제외할 파일 (Vite 빌드 결과물인 'dist' 추가)
+  "exclude": ["node_modules", "dist"]
 }

@@ -1,0 +1,82 @@
+// 순수 TypeScript 프로젝트용 (Node.js, 라이브러리, CLI 등)
+{
+  "compilerOptions": {
+    
+    /*******************************************/
+    /* 모듈 관련 설정 (Module Configuration) */
+    /*******************************************/
+    
+    "baseUrl": ".", // 모듈 경로 해석의 기준 디렉터리를 현재 위치(tsconfig.json이 있는 곳)로 설정합니다.
+    "paths": {
+      // 모듈 경로에 대한 별칭(alias)을 설정합니다.
+      // TypeScript 컴파일 시에는 경로를 변환해주지 않으므로, 실제 실행 시에는 'tsconfig-paths' 같은 라이브러리가 필요할 수 있습니다.
+      "@/*": ["./src/*"] 
+    },
+    "module": "NodeNext", // 최신 Node.js의 ECMAScript 모듈(ESM)과 CommonJS(CJS) 규칙을 따르도록 설정합니다.
+    "moduleDetection": "force", // 모든 .ts/.tsx 파일을 전역 스코프가 아닌 개별 모듈로 취급하도록 강제하여, 전역 스코프 오염을 방지합니다.
+    "moduleResolution": "NodeNext", // 'module'이 'NodeNext'일 때 함께 사용하며, Node.js의 모듈 해석 방식을 그대로 따릅니다.
+    "resolveJsonModule": true, // '.json' 파일을 모듈처럼 'import' 하여 사용할 수 있게 허용합니다.
+    "allowImportingTsExtensions": false, // import 문에서 '.ts', '.tsx' 같은 확장자 사용을 금지합니다. (e.g., import './file.ts' X)
+    
+    /************************************************/
+    /* 언어 및 환경 설정 (Language and Environment) */
+    /************************************************/
+    
+    "experimentalDecorators": true, // ES7의 데코레이터('@') 문법 사용을 허용합니다. (NestJS, TypeORM 등에서 사용)
+    "emitDecoratorMetadata": true, // 데코레이터 사용 시, 타입 메타데이터를 JS 파일에 포함시킵니다. (DI, 리플렉션 기능에 필요)
+    "lib": ["ES2023"], // 컴파일 시 사용할 내장 API 라이브러리를 지정합니다. 'DOM' 관련 라이브러리를 제외하여 Node.js 같은 서버 환경에 최적화합니다.
+    "target": "ES2022", // 컴파일될 JavaScript 코드의 ECMAScript 버전을 지정합니다. 이 버전의 문법으로 코드가 변환됩니다.
+    "useDefineForClassFields": true, // 클래스 필드를 'Object.defineProperty'를 사용하여 ECMAScript 표준에 맞게 정의하도록 설정합니다.
+
+    /**************************************************/
+    /* 타입 검사 관련 설정 (Type-Checking)          */
+    /* - 프로젝트의 안정성을 극대화하는 엄격한 옵션들 - */
+    /**************************************************/
+
+    "strict": true, // 모든 엄격한 타입 검사 옵션('noImplicitAny', 'strictNullChecks' 등)을 활성화하는 마스터 옵션입니다.
+    "exactOptionalPropertyTypes": true, // 선택적 속성('prop?: T')에 'undefined' 외 다른 타입(특히 null)의 할당을 금지합니다.
+    "noImplicitOverride": true, // 상속받은 클래스의 메서드를 오버라이드할 때 'override' 키워드 사용을 강제하여 실수를 방지합니다.
+    "noImplicitReturns": true, // 함수 내의 모든 코드 경로가 명시적으로 값을 반환하도록 강제합니다.
+    "noPropertyAccessFromIndexSignature": true, // 인덱스 시그니처로 정의된 객체의 속성에 점 표기법('.')으로 접근하는 것을 금지합니다. (obj.key X, obj['key'] O)
+    "noUncheckedIndexedAccess": true, // 배열이나 객체에 인덱스로 접근 시, 결과가 'undefined'일 수 있음을 타입에 명시합니다. ('T | undefined')
+
+    /****************************************************/
+    /* 모듈 상호운용성 관련 설정 (Interop Constraints) */
+    /****************************************************/
+    
+    "esModuleInterop": true, // CommonJS 모듈을 ES6 모듈 문법('import')으로 더 편리하게 가져올 수 있도록 허용합니다. 'allowSyntheticDefaultImports'를 포함합니다.
+    "forceConsistentCasingInFileNames": true, // 파일 이름의 대소문자를 일관되게 사용하도록 강제합니다. (특히 Git과 파일 시스템 간의 오류 방지)
+    "isolatedModules": true, // 모든 파일을 독립된 모듈로 변환할 수 있도록 보장합니다. (Babel, esbuild 등 다른 도구와의 호환성을 위해 필수)
+    "verbatimModuleSyntax": true, // 'import type'과 일반 'import'를 구분하며, 사용하지 않는 import 문을 제거하지 않고 그대로 유지하여 모듈 해석의 예측 가능성을 높입니다.
+
+    /******************************************************/
+    /* JavaScript 파일 출력 관련 설정 (Emit Configuration) */
+    /******************************************************/
+    
+    "outDir": "./dist", // 컴파일된 JavaScript 파일이 생성될 출력 디렉터리를 지정합니다.
+    "rootDir": "./src", // 소스 코드의 루트 디렉터리를 지정하여, 'outDir'의 폴더 구조를 'rootDir' 기준으로 생성합니다.
+    "sourceMap": true, // 컴파일된 JS 파일과 원본 TS 파일을 매핑하는 소스맵('.js.map') 파일을 생성하여 디버깅을 돕습니다.
+    "declaration": true, // 타입 정의 파일('.d.ts')을 생성합니다. 이 프로젝트를 다른 프로젝트에서 라이브러리로 사용할 때 필요합니다.
+    "incremental": true, // 이전 컴파일 정보를 파일('.tsbuildinfo')로 저장하여, 다음 컴파일 시 변경된 부분만 처리하여 속도를 향상시킵니다.
+
+    /****************************************************/
+    /* 성능 및 최적화 관련 설정 (Performance & Opt.) */
+    /****************************************************/
+    
+    "allowJs": true, // 프로젝트 내에서 '.js' 파일 사용 및 import를 허용합니다. (점진적인 TypeScript 마이그레이션에 유용)
+    "skipLibCheck": true, // 의존하는 라이브러리('node_modules')의 타입 정의 파일('.d.ts') 검사를 건너뛰어 컴파일 속도를 크게 향상시킵니다.
+
+    /**********************************/
+    /* 기타 엄격함 관련 설정 (Other) */
+    /**********************************/
+    
+    "noErrorTruncation": true, // 타입 에러 메시지가 너무 길 때 중간에 잘라내지 않고 전체 내용을 모두 표시하여 디버깅을 돕습니다.
+    "preserveWatchOutput": true // '--watch' 모드에서, 파일 변경 시 콘솔 화면을 지우지 않고 이전 컴파일 로그를 남겨둡니다.
+  },
+  
+  // TypeScript 컴파일러가 컴파일할 파일 및 폴더 목록을 지정합니다.
+  "include": ["src"], 
+  
+  // 컴파일 대상에서 제외할 파일 및 폴더 목록을 지정합니다.
+  "exclude": ["node_modules", "dist"] 
+}
