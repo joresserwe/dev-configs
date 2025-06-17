@@ -1,0 +1,122 @@
+{
+  "$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
+  "organizeImports": {
+    "enabled": true
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 80,
+    "lineEnding": "lf"
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single",
+      "trailingCommas": "all",
+      "arrowParentheses": "always",
+      "semicolons": "asNeeded"
+    }
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      // React/JSX 관련 규칙 제거
+      "style": {
+        "noUselessElse": "error",
+        "noNegationElse": "error",
+        "useConsistentArrayType": {
+          "level": "error",
+          "options": {
+            "syntax": "shorthand"
+          }
+        },
+        "useTemplate": "error"
+      },
+      "suspicious": {
+        "noConsoleLog": "warn",
+        "noExplicitAny": "error",
+        "noDoubleEquals": "error",
+        "noEmptyInterface": "error",
+        "noRedundantUseStrict": "error"
+      },
+      "correctness": {
+        "noUnusedVariables": "error",
+        "noUnusedImports": "error"
+      },
+      "complexity": {
+        "useArrowFunction": "error",
+        "noBannedTypes": "error"
+      },
+      "performance": {
+        "noDelete": "error"
+      },
+      "nursery": {
+        "useNamingConvention": [
+          "error",
+          {
+            "strictCase": false,
+            "requireAscii": true,
+            "enumMember": "PascalCase",
+            "const": "UPPER_CASE",
+            "class": "PascalCase",
+            "typeAlias": "PascalCase",
+            "interface": "PascalCase",
+            "typeParameter": "PascalCase",
+            "function": "camelCase",
+            "parameter": "camelCase",
+            "variable": "camelCase",
+            "property": "camelCase",
+            "method": "camelCase"
+          }
+        ]
+      }
+    }
+  },
+  "files": {
+    "ignore": [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/coverage/**",
+      "**/out/**",
+      "**/generated/**",
+      "**/.turbo/**",
+      "**/.cache/**",
+      "**/*.generated.*"
+    ]
+  },
+  "overrides": [
+    // Next.js 관련 overrides 제거
+    {
+      "include": [
+        "**/*.test.{js,ts}",
+        "**/*.spec.{js,ts}",
+        "**/__tests__/**",
+        "**/__mocks__/**"
+      ],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noConsoleLog": "off",
+            "noExplicitAny": "off"
+          }
+        }
+      }
+    },
+    {
+      "include": [
+        "*.config.{js,mjs,cjs,ts}",
+        "*.setup.{js,ts}"
+      ],
+      "linter": {
+        "rules": {
+          "nursery": {
+            "useNamingConvention": "off"
+          }
+        }
+      }
+    }
+  ]
+}

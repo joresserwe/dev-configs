@@ -1,0 +1,158 @@
+{
+  "$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
+  "organizeImports": {
+    "enabled": true
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 80,
+    "lineEnding": "lf"
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single",
+      "trailingCommas": "all",
+      "arrowParentheses": "always",
+      "semicolons": "asNeeded"
+    }
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "a11y": {
+        "useKeyWithClickEvents": "error",
+        "useKeyWithMouseEvents": "error"
+      },
+      "style": {
+        "noUselessElse": "error",
+        "noNegationElse": "error",
+        "useConsistentArrayType": {
+          "level": "error",
+          "options": {
+            "syntax": "shorthand"
+          }
+        },
+        "useTemplate": "error"
+      },
+      "suspicious": {
+        "noConsoleLog": "warn",
+        "noExplicitAny": "error",
+        "noArrayIndexKey": "error",
+        "noDoubleEquals": "error",
+        "noEmptyInterface": "error",
+        "noRedundantUseStrict": "error"
+      },
+      "correctness": {
+        "useExhaustiveDependencies": "error",
+        "noUnusedVariables": "error",
+        "noUnusedImports": "error"
+      },
+      "complexity": {
+        "noUselessFragments": "error",
+        "useArrowFunction": "error",
+        "noBannedTypes": "error"
+      },
+      "performance": {
+        "noDelete": "error"
+      },
+      "security": {
+        "noDangerouslySetInnerHtml": "error"
+      },
+      "nursery": {
+        "useNamingConvention": [
+          "error",
+          {
+            "strictCase": false,
+            "requireAscii": true,
+            "enumMember": "PascalCase",
+            "const": "UPPER_CASE",
+            "class": "PascalCase",
+            "typeAlias": "PascalCase",
+            "interface": "PascalCase",
+            "typeParameter": "PascalCase",
+            "function": "camelCase",
+            "parameter": "camelCase",
+            "variable": "camelCase",
+            "property": "camelCase",
+            "method": "camelCase"
+          }
+        ]
+      }
+    }
+  },
+  "files": {
+    "ignore": [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/coverage/**",
+      "**/.next/**",
+      "**/public/**",
+      "**/out/**",
+      "**/.vercel/**",
+      "**/next-env.d.ts",
+      "**/generated/**",
+      "**/.turbo/**",
+      "**/.cache/**",
+      "**/storybook-static/**",
+      "**/*.generated.*"
+    ]
+  },
+  "overrides": [
+    {
+      "include": [
+        "**/app/**/page.tsx",
+        "**/app/**/layout.tsx"
+      ],
+      "linter": {
+        "rules": {
+          "nursery": {
+            "useNamingConvention": [
+              "error",
+              {
+                "strictCase": false,
+                "function": [
+                  "camelCase",
+                  "PascalCase"
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "include": [
+        "**/*.test.{js,jsx,ts,tsx}",
+        "**/*.spec.{js,jsx,ts,tsx}",
+        "**/__tests__/**",
+        "**/__mocks__/**"
+      ],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noConsoleLog": "off",
+            "noExplicitAny": "off"
+          }
+        }
+      }
+    },
+    {
+      "include": [
+        "*.config.{js,mjs,cjs,ts}",
+        "middleware.{js,ts}",
+        "instrumentation.{js,ts}"
+      ],
+      "linter": {
+        "rules": {
+          "nursery": {
+            "useNamingConvention": "off"
+          }
+        }
+      }
+    }
+  ]
+}
